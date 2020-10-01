@@ -3,7 +3,7 @@ import React from 'react';
 
 const PostPage  = function() {
     return(
-        <div>
+        <div className="timeline-holder">
             timeline
         </div>
     )

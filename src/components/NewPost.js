@@ -4,7 +4,7 @@ import React from 'react';
 
 const NewPost  = function() {
     return(
-        <div>
+        <div className="newpost-holder">
             newpost
         </div>
     )
