@@ -1,8 +1,10 @@
 
-import React, { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Container, Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
+//import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/index';
+//import * as yup from 'yup';
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -11,12 +13,13 @@ function mapDispatchToProps(dispatch) {
 }
 
 //show text and pic
-//tags: && content
+
 
 const ConnectedNewPost = function (props) {
 
+    const [validated, setValidated] = useState(false);
     const [content, setContent] = useState("")
-    const [tags, addTags] = useState([])
+    const [tagsAsString, addTags] = useState("")
     const [file, addFile] = useState("")
 
     function handleChangeContent(e) {
@@ -24,11 +27,23 @@ const ConnectedNewPost = function (props) {
         console.log("VALUE", e.target.value)
     }
 
+    function handleChangeTag(e) {
+        addTags(e.target.value)
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
-    
-        props.addPost({ 
+
+        if (e.currentTarget.checkValidity() === false) {
+
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        else {
+            let tags = tagsAsString.split("-")
+
             
+            props.addPost({
                 content: content,
                 author: "صورت زخمی",
                 date: new Date().valueOf(),
@@ -39,15 +54,16 @@ const ConnectedNewPost = function (props) {
                     "&#128549": 0
                 },
                 like: 0,
-                tags:tags
-
-         });
-        console.log("TITLE", content)
-        setContent("");
-        addTags([]);
-        addFile("")
-
+                tags: tags
+            });
+            
+             setContent(" ");
+             addTags("");
+             addFile("")
+        }
+        setValidated(true);
     }
+
 
     return (
 
@@ -58,23 +74,40 @@ const ConnectedNewPost = function (props) {
                     <div className="devider"></div>
                 </div>
             </Row>
-            <Row>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="post-body"></label>
-                        <input
-                            type="text"
-                            id="post-body"
-                            placeholder="چی تو ذهنته؟ 200 کاراکتر بنویس."
-                            value={content}
-                            onChange={handleChangeContent}
-                        />
-                    </div>
-                    <div>
-                        add tag
-                    </div>
-                    <button type="submit">SAVE</button>
-                </form>
+            <Row className="text-input-holder">
+                <Form noValidate validated={validated} onSubmit={handleSubmit} className="input-form-holder">
+                    <Form.Row>
+                        <Form.Group as={Col} md="12" controlId="contentInputForm">
+                            <Form.Label>یه چیزی بنویس ...</Form.Label>
+                            <Form.Control
+                                required
+                                className="post-text-content-input"
+                                type="text"
+                                name="contentInput"
+                                value={content}
+                                onChange={handleChangeContent}
+                                maxLength={200}
+                                placeholder="تا ۲۰۰ کاراکتر"
+                            />
+                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Row>
+                        <Form.Group as={Col} md="12" controlId="tagsInputForm">
+                            <Form.Label>تگ بذار</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="tagsInput"
+                                value={tagsAsString}
+                                onChange={handleChangeTag}
+                                maxLength={150}
+                                placeholder="با خط فاصله جدا کن"
+                            />
+                        </Form.Group>
+                    </Form.Row>
+                    <Button className="submit-button" type="submit">بفرست</Button>
+                </Form>
             </Row>
             <Row>
                 <Col>
