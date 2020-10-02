@@ -1,6 +1,6 @@
 
-import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Form, InputGroup, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Media, Button } from 'react-bootstrap';
 //import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/index';
@@ -20,7 +20,7 @@ const ConnectedNewPost = function (props) {
     const [validated, setValidated] = useState(false);
     const [content, setContent] = useState("")
     const [tagsAsString, addTags] = useState("")
-    const [file, addFile] = useState("")
+    const [photoFile, addFile] = useState("")
 
     function handleChangeContent(e) {
         setContent(e.target.value)
@@ -43,10 +43,13 @@ const ConnectedNewPost = function (props) {
         fileElem.onchange = function () {
             const reader = new FileReader();
             reader.readAsDataURL(fileElem.files[0]);
-            reader.onload = function() {addFile(reader.result)}
+            reader.onload = function () {
+                console.log("RED", reader)
+                addFile(reader.result)
+            }
             reader.onerror = function () {
                 alert("فایل عکس مناسب اضافه کن");
-              };
+            };
         };
 
 
@@ -68,7 +71,7 @@ const ConnectedNewPost = function (props) {
                 content: content,
                 author: "صورت زخمی",
                 date: new Date().valueOf(),
-                file: file,
+                file: photoFile,
                 reaction: {
                     "&#128540": 0,
                     "&#128520": 0,
@@ -136,10 +139,30 @@ const ConnectedNewPost = function (props) {
                 <div id="img-holder" className="img-holder"></div>
 
 
-                {/* <button className="btn add-btn" onClick={() => (props.imageAdder())}>+</button> */} 
+                {/* <button className="btn add-btn" onClick={() => (props.imageAdder())}>+</button> */}
             </Row>
-            <Row>
-                preview
+            <Row style={{backgroundColor:'white'}}>
+                <Col md={6} style={{ margin: 'auto', position:'absolute', bottom:'10px', right:'25%' }}>
+                    <div style={{ margin: 'auto', textAlign:'center', margin:0 }}>
+                        <p>پیش نمایش پست</p>
+                    </div>
+                    <Media style={{ display: 'flex', flexDirection: 'column', alignItems:'center' }}>
+                        <Media.Body>
+                            <div  style={{height:'20%', wordWrap: 'break-word'}}>
+                            <p >
+                                {content}
+                            </p>
+                            </div>
+                            
+                        </Media.Body>
+                        <img
+                            width='auto'
+                            height={100}
+                            className="mr-3"
+                            src={photoFile ? photoFile : "https://picsum.photos/200/300"}
+                        />
+                    </Media>
+                </Col>
             </Row>
         </Container>
 
