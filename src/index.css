@@ -87,6 +87,12 @@ body {
     bottom: 25%;
 }
 
+.file-adder-holder{
+    position: absolute;
+    right    : 5%;
+    bottom: 30%;
+}
+
 .input-form-holder {
     width     : 100%;
     padding   : 1% 4%;

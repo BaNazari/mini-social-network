@@ -31,6 +31,27 @@ const ConnectedNewPost = function (props) {
         addTags(e.target.value)
     }
 
+
+    function imageImporter() {
+        const fileSelect = document.getElementById("fileSelect"),
+            fileElem = document.getElementById("fileElem");
+        if (fileElem) {
+            fileElem.click();
+        }
+
+        console.log(fileElem)
+        fileElem.onchange = function () {
+            const reader = new FileReader();
+            reader.readAsDataURL(fileElem.files[0]);
+            reader.onload = function() {addFile(reader.result)}
+            reader.onerror = function () {
+                alert("فایل عکس مناسب اضافه کن");
+              };
+        };
+
+
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
 
@@ -42,7 +63,7 @@ const ConnectedNewPost = function (props) {
         else {
             let tags = tagsAsString.split("-")
 
-            
+
             props.addPost({
                 content: content,
                 author: "صورت زخمی",
@@ -56,10 +77,10 @@ const ConnectedNewPost = function (props) {
                 like: 0,
                 tags: tags
             });
-            
-             setContent(" ");
-             addTags("");
-             addFile("")
+
+            setContent(" ");
+            addTags("");
+            addFile("")
         }
         setValidated(true);
     }
@@ -109,11 +130,13 @@ const ConnectedNewPost = function (props) {
                     <Button className="submit-button" type="submit">بفرست</Button>
                 </Form>
             </Row>
-            <Row>
-                <Col>
-                    <p>فایل اضافه کن</p>
-                </Col>
+            <Row className="file-adder-holder">
+                <input type="file" id="fileElem" accept="image/*" style={{ display: "none" }}></input>
+                <button className="btn browse-btn" id="fileSelect" onClick={imageImporter}>&#x1F3DE; +</button>
+                <div id="img-holder" className="img-holder"></div>
 
+
+                {/* <button className="btn add-btn" onClick={() => (props.imageAdder())}>+</button> */} 
             </Row>
             <Row>
                 preview
