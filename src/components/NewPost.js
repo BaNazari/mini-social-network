@@ -10,40 +10,83 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-
-//send the whole post
+//show text and pic
+//tags: && content
 
 const ConnectedNewPost = function (props) {
 
     const [content, setContent] = useState("")
     const [tags, addTags] = useState([])
+    const [file, addFile] = useState("")
 
-    function handleChange(e) {
+    function handleChangeContent(e) {
         setContent(e.target.value)
         console.log("VALUE", e.target.value)
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.addPost({ content });
+    
+        props.addPost({ 
+            
+                content: content,
+                author: "صورت زخمی",
+                date: new Date().valueOf(),
+                file: file,
+                reaction: {
+                    "&#128540": 0,
+                    "&#128520": 0,
+                    "&#128549": 0
+                },
+                like: 0,
+                tags:tags
+
+         });
         console.log("TITLE", content)
-        setContent("")
-        
+        setContent("");
+        addTags([]);
+        addFile("")
+
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="post-body">Title</label>
-                <input
-                    type="text"
-                    id="post-body"
-                    value={content}
-                    onChange={handleChange}
-                />
-            </div>
-            <button type="submit">SAVE</button>
-        </form>
+
+        <Container className="newpost-holder">
+            <Row>
+                <div className="newpost-upperline">
+                    <p>پست جدید</p>
+                    <div className="devider"></div>
+                </div>
+            </Row>
+            <Row>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="post-body"></label>
+                        <input
+                            type="text"
+                            id="post-body"
+                            placeholder="چی تو ذهنته؟ 200 کاراکتر بنویس."
+                            value={content}
+                            onChange={handleChangeContent}
+                        />
+                    </div>
+                    <div>
+                        add tag
+                    </div>
+                    <button type="submit">SAVE</button>
+                </form>
+            </Row>
+            <Row>
+                <Col>
+                    <p>فایل اضافه کن</p>
+                </Col>
+
+            </Row>
+            <Row>
+                preview
+            </Row>
+        </Container>
+
     )
 }
 
