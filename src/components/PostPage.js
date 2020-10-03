@@ -1,60 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Media, Col, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { getSinglePost } from '../actions/index';
+import {Link} from 'react-router-dom';
+import { useHistory } from 'react-router'
 
 
-const PostPage = function () {
+const PostPage = function (props) {
+    const postId = props.match.params.postId;
+    useEffect(() => { props.getSinglePost(postId) }, [])
+    const history = useHistory()
+    console.log("PAGE", props)
+
+    function homeReloader() {
+        
+        history.go(-1)
+    }
+
     return (
-        <Container>
-            <Row>
-                <Col md={6} sm={12}>
-                    <Media>
-                        <img
-                            width={64}
-                            height={64}
-                            className="mr-3"
-                            src="https://picsum.photos/id/237/200/300"
-                            alt="Generic placeholder"
-                        />
-                        <Media.Body>
-                            <h5>Media Heading</h5>
-                            <p>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                                ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
-                                tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-                                Donec lacinia congue felis in faucibus.
-                    </p>
-                        </Media.Body>
-                    </Media>
-                </Col>
-                <Col md={5} sm={12}>
-                    <Media>
-                        <Media.Body>
-                            <h5>Media Heading</h5>
-                            <p>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                            </p>
-                        </Media.Body>
-                    </Media>
-                    <Media>
-                        <Media.Body>
-                            <h5>Media Heading</h5>
-                            <p>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                            </p>
-                        </Media.Body>
-                    </Media>
-                    <Media>
-                        <Media.Body>
-                            <h5>Media Heading</h5>
-                            <p>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-                            </p>
-                        </Media.Body>
-                    </Media>
-                </Col>
-            </Row>
-        </Container>
+        <div className="single-photo">
+            <div onClick={homeReloader}>
+                home
+            </div>
+            {props.singlePost[0] && props.singlePost[0].content}
+
+        </div>
     )
 }
 
-export default PostPage
+function mapStateToProps(state) {
+    return {
+        singlePost: state.singlePost
+    };
+}
+
+export default connect(
+    mapStateToProps,
+    { getSinglePost }
+)(PostPage);

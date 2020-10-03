@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import Timeline from './Timeline';
 import NewPost from './NewPost';
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import avaImg from '../assets/avatar.jpeg'
+import avaImg from '../assets/avatar.jpeg';
+
 
 const Homepage = function () {
+
 
     const [loggendIn, setLogin] = useState(true)
 
 
-
     return (
 
-        <Container className="homepage-container">
+        <Container  className="homepage-container">
             <Row >
-                <h3 className="headline">به مینی فیس بوک خوش آمدید.</h3>
+                <h3 className="headline">به مینی فیس‌بوک خوش آمدید.</h3>
             </Row>
 
             <Row>
@@ -39,5 +40,7 @@ const Homepage = function () {
         </Container>
     )
 }
+
+
 
 export default Homepage
