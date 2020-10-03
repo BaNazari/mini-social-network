@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getData } from "../actions/index";
 import { Link } from 'react-router-dom';
-import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, Dropdown, Form } from 'react-bootstrap';
 
 import { modifyPost } from '../actions/index';
 
@@ -17,14 +17,42 @@ const ConennctedPost = function (props) {
 
     const item = props.currentPost;
 
+    const [validated, setValidated] = useState(false);
     const [reaction0, setReaction0] = useState(item.reaction[0]);
     const [reaction1, setReaction1] = useState(item.reaction[1]);
     const [reaction2, setReaction2] = useState(item.reaction[2]);
     const [likes, setLike] = useState(item.like)
+    const [comments, setComments] = useState(item.comments);
+    const [commentAuth, setcommentAuth] = useState("");
+    const [commentText, setcommentText] = useState("")
 
-    const [comments, setComments] = useState([item.comments]);
+    useEffect(() => { updatePost() }, [reaction0, reaction1, reaction2, likes, comments])
 
-    useEffect(() => { updatePost() }, [reaction0, reaction1, reaction2, likes])
+    function handleChangeCAuthorName(e) {
+        setcommentAuth(e.target.value);
+    }
+
+    function handleChangeCAuthorText(e) {
+        setcommentText(e.target.value)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        if (e.currentTarget.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        else {
+            const commentSum = item.comments.concat({ commentAuthor: commentAuth, commentContent: commentText })
+            setComments(commentSum)
+            setcommentAuth("");
+            setcommentText("");
+        }
+        setValidated(true);
+        window.location.reload()
+    }
+
 
     function updatePost() {
         props.modifyPost([{
@@ -36,10 +64,26 @@ const ConennctedPost = function (props) {
             ,
             like: likes,
             tags: item.tags,
-            comments: []
+            comments: comments
         }, item.id]);
     }
 
+    function shareIt(e) {
+        const url = `http://localhost:3000/posts/${item.id}`
+        if(navigator.share) {
+            navigator.share({
+                url: url
+            }).then(() => {
+                console.log('Shared!')
+            })
+            .catch(console.error)
+        }
+        //Since navigator.share works only for https 
+        else {
+            console.log('Fake share!')
+        }
+
+    }
 
     return (
         <Card className="post-card-timeline">
@@ -100,11 +144,9 @@ const ConennctedPost = function (props) {
                             title="اشتراک‌گذاری"
                             id="input-group-dropdown-1"
                         >
-                            <Dropdown.Item href="#">Action</Dropdown.Item>
-                            <Dropdown.Item href="#">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#">Something else here</Dropdown.Item>
+                            <Dropdown.Item onClick={shareIt}>اشتراک‌گذاری در واتزاپ</Dropdown.Item>
                             <Dropdown.Divider />
-                            <Dropdown.Item href="#">Separated link</Dropdown.Item>
+                            <Dropdown.Item onClick={shareIt}>اشتراک‌گذاری در توییتر</Dropdown.Item>
                         </DropdownButton>
                     </InputGroup>
                 </Col>
@@ -112,10 +154,44 @@ const ConennctedPost = function (props) {
             {(props.currentPage === "postpage") &&
                 <Container>
                     <Row>
-                        Form here
+                        <Form noValidate validated={validated} onSubmit={handleSubmit} className="input-form-holder">
+                            <Form.Row>
+                                <Form.Group as={Col} md="12" controlId="CAuthInputForm">
+                                    <Form.Label>اسمت رو ثبت کن</Form.Label>
+                                    <Form.Control
+                                        required
+                                        className=""
+                                        type="text"
+                                        name="CAuthInputForm"
+                                        value={commentAuth}
+                                        onChange={handleChangeCAuthorName}
+                                        maxLength={50}
+
+                                    />
+
+                                </Form.Group>
+                            </Form.Row>
+
+                            <Form.Row>
+                                <Form.Group as={Col} md="12" controlId="CTextInputForm">
+                                    <Form.Label>نظرت چیه؟</Form.Label>
+                                    <Form.Control
+                                        required
+                                        type="text"
+                                        className=""
+                                        name="CTextInputForm"
+                                        value={commentText}
+                                        onChange={handleChangeCAuthorText}
+                                        maxLength={150}
+
+                                    />
+                                </Form.Group>
+                            </Form.Row>
+                            <Button className="submit-button" type="submit">بفرست</Button>
+                        </Form>
                     </Row>
                     {item.comments.map((comment) => (
-                        <Row>
+                        <Row style={{ display: 'flex' }}>
                             <Row>
                                 {comment.commentAuthor}
                             </Row>

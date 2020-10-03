@@ -114,7 +114,7 @@ const ConnectedNewPost = function (props) {
                                 maxLength={200}
                                 placeholder="تا ۲۰۰ کاراکتر"
                             />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                           
                         </Form.Group>
                     </Form.Row>
 
