@@ -22,9 +22,9 @@ const ConennctedPost = function (props) {
     const [reaction2, setReaction2] = useState(item.reaction[2]);
     const [likes, setLike] = useState(item.like)
 
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState([item.comments]);
 
-    useEffect(() => {updatePost()},[reaction0,reaction1,reaction2,likes])
+    useEffect(() => { updatePost() }, [reaction0, reaction1, reaction2, likes])
 
     function updatePost() {
         props.modifyPost([{
@@ -32,12 +32,12 @@ const ConennctedPost = function (props) {
             author: item.author,
             date: item.date,
             file: item.file,
-            reaction: [reaction0,reaction1,reaction2]
+            reaction: [reaction0, reaction1, reaction2]
             ,
             like: likes,
             tags: item.tags,
-            comments : []
-        },item.id]);
+            comments: []
+        }, item.id]);
     }
 
 
@@ -109,9 +109,23 @@ const ConennctedPost = function (props) {
                     </InputGroup>
                 </Col>
             </Row>
-            {(props.currentPage === "postpage") && <Row>
-                {item.comments.length}
-            </Row>}
+            {(props.currentPage === "postpage") &&
+                <Container>
+                    <Row>
+                        Form here
+                    </Row>
+                    {item.comments.map((comment) => (
+                        <Row>
+                            <Row>
+                                {comment.commentAuthor}
+                            </Row>
+                            <Row>
+                                {comment.commentContent}
+                            </Row>
+                        </Row>
+                    ))}
+                </Container>
+            }
         </Card>
     )
 }
