@@ -136,32 +136,23 @@ const ConnectedNewPost = function (props) {
             <Row className="file-adder-holder">
                 <input type="file" id="fileElem" accept="image/*" style={{ display: "none" }}></input>
                 <button className="btn browse-btn" id="fileSelect" onClick={imageImporter}>&#x1F3DE; +</button>
-                <div id="img-holder" className="img-holder"></div>
 
-
-                {/* <button className="btn add-btn" onClick={() => (props.imageAdder())}>+</button> */}
             </Row>
-            <Row style={{backgroundColor:'white'}}>
-                <Col md={6} style={{ margin: 'auto', position:'absolute', bottom:'10px', right:'25%' }}>
-                    <div style={{ margin: 'auto', textAlign:'center', margin:0 }}>
-                        <p>پیش نمایش پست</p>
-                    </div>
-                    <Media style={{ display: 'flex', flexDirection: 'column', alignItems:'center' }}>
-                        <Media.Body>
-                            <div  style={{height:'20%', wordWrap: 'break-word'}}>
-                            <p >
-                                {content}
-                            </p>
-                            </div>
-                            
-                        </Media.Body>
-                        <img
-                            width='auto'
-                            height={100}
-                            className="mr-3"
-                            src={photoFile ? photoFile : "https://picsum.photos/200/300"}
-                        />
-                    </Media>
+            <Row>
+                {photoFile&&<div>
+                    <img
+                        width='auto'
+                        height={80}
+                        className="mr-3"
+                        src={photoFile}
+                    />
+                    <Button className="photo-remove-button" variant="danger" onClick={() => addFile("")}> - </Button>
+                </div>}
+
+            </Row>
+            <Row style={{ backgroundColor: 'white' }}>
+                <Col md={6} style={{ margin: 'auto', position: 'absolute', bottom: '10px', right: '25%' }}>
+
                 </Col>
             </Row>
         </Container>

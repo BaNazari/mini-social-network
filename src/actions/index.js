@@ -15,3 +15,12 @@ export function addPost(payLoad) {
   }
 }
 
+export function getData() {
+  return function (dispatch) {
+    return fetch("http://localhost:3000/posts", { method: "GET" })
+      .then(response => response.json(), console.log("INSIDE GET ACTION"))
+      .then(json => {
+        dispatch({ type: "DATA_LOADED", payload: json });
+      });
+  };
+}
