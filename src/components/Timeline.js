@@ -39,15 +39,15 @@ const Timeline = function (props) {
                                     <Row>
                                         <Col>
                                             <Button>
-                                                <Badge variant="light">9</Badge>
+                                                <Badge variant="light">{item.reaction[0]}</Badge>
                                                 &#129321;
                                             </Button>
                                             <Button>
-                                                <Badge variant="light">9</Badge>
+                                                <Badge variant="light">{item.reaction[1]}</Badge>
                                                 &#129314;
                                             </Button>
                                             <Button>
-                                                <Badge variant="light">9</Badge>
+                                                <Badge variant="light">{item.reaction[2]}</Badge>
                                                 &#129299;
                                             </Button>
                                         </Col>

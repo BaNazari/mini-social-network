@@ -12,6 +12,9 @@ export function addPost(payLoad) {
       body: JSON.stringify(payLoad)
     })
       .then(dispatch({ type: ADD_POST, payload }))
+      .catch((error) => {
+        console.error('Error:', error);
+      })
   }
 }
 
@@ -21,7 +24,11 @@ export function getData() {
       .then(response => response.json(), console.log("INSIDE GET ACTION"))
       .then(json => {
         dispatch({ type: DATA_LOADED, payload: json });
-      });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+      ;
   };
 }
 
@@ -30,8 +37,11 @@ export function getSinglePost(id) {
     return fetch(`http://localhost:3000/posts/${id}`, { method: "GET" })
       .then(response => response.json(), console.log("INSIDE GET ACTION"))
       .then(json => {
-        console.log("SINGLE", json)
         dispatch({ type: SINGLE_POST_LOADED, payload: json });
-      });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      })
+      ;
   };
 }
