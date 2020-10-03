@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getData } from "../actions/index";
 import { Link } from 'react-router-dom';
 
-import { Row, Card, Container, Col, Badge, Button } from 'react-bootstrap'
+import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, Dropdown } from 'react-bootstrap'
 
 const Timeline = function (props) {
 
@@ -53,8 +53,30 @@ const Timeline = function (props) {
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col md={3} sm={12}>com</Col>
-                                <Col md={3} sm={12}>sha</Col>
+                                <Col md={3} sm={12}>
+                                    <Button>
+                                        <Badge variant="light">9</Badge>
+                                        &#128172;
+                                    </Button>
+                                </Col>
+                                <Col md={3} sm={12}>
+                                    <InputGroup className="mb-3">
+                                        <DropdownButton
+                                            as={InputGroup.Prepend}
+                                            variant="outline-secondary"
+                                            title="اشتراک‌گذاری"
+                                            id="input-group-dropdown-1"
+                                        >
+                                            <Dropdown.Item href="#">Action</Dropdown.Item>
+                                            <Dropdown.Item href="#">Another action</Dropdown.Item>
+                                            <Dropdown.Item href="#">Something else here</Dropdown.Item>
+                                            <Dropdown.Divider />
+                                            <Dropdown.Item href="#">Separated link</Dropdown.Item>
+                                        </DropdownButton>
+
+                                    </InputGroup>
+
+                                </Col>
                             </Row>
                         </Card>
 
