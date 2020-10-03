@@ -84,13 +84,13 @@ body {
 .submit-button {
     position: absolute;
     left    : 10%;
-    bottom: 25%;
+    bottom  : 25%;
 }
 
-.file-adder-holder{
+.file-adder-holder {
     position: absolute;
-    right    : 5%;
-    bottom: 30%;
+    right   : 5%;
+    bottom  : 30%;
 }
 
 .input-form-holder {
@@ -103,10 +103,38 @@ body {
     height: 40vh
 }
 
-.photo-remove-button{
-    width: 30px;
-    height: 20px;
-    margin: 10px;
-    padding:0;
+.photo-remove-button {
+    width      : 30px;
+    height     : 20px;
+    margin     : 10px;
+    padding    : 0;
     font-weight: bold;
+}
+
+.entire-timeline-holder-row {
+    text-align      : right;
+}
+
+.entire-timeline-holder-col {
+    margin          : auto;
+    width: 100%;
+    
+}
+
+.post-card-timeline {
+    width         : 100%;
+    display       : flex;
+    flex-direction: column;
+    margin        : 2% auto;
+    padding: 4%;
+}
+
+.card-text{
+    text-decoration: none;
+    color: black;
+}
+
+.card-text:hover{
+    text-decoration: none !important;
+    color: black;
 }

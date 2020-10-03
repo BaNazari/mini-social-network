@@ -70,13 +70,13 @@ const ConnectedNewPost = function (props) {
             props.addPost({
                 content: content,
                 author: "صورت زخمی",
-                date: new Date().valueOf(),
+                date: (function(){
+                    let d = new Date()
+                    return d.toDateString()
+                })(),
                 file: photoFile,
-                reaction: {
-                    "&#128540": 0,
-                    "&#128520": 0,
-                    "&#128549": 0
-                },
+                reaction: [0,0,0]
+                ,
                 like: 0,
                 tags: tags
             });
