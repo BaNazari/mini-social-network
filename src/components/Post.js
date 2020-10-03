@@ -3,10 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getData } from "../actions/index";
 import { Link } from 'react-router-dom';
-import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, Dropdown } from 'react-bootstrap'
+import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, Dropdown } from 'react-bootstrap';
 
+import { modifyPost } from '../actions/index';
 
- const Post = function (props) {
+function mapDispatchToProps(dispatch) {
+    return {
+        modifyPost: modifiedPost => dispatch(modifyPost(modifiedPost))
+    }
+}
+
+ const ConennctedPost = function (props) {
      const item = props.currentPost;
      return (
           <Card className="post-card-timeline">
@@ -48,7 +55,7 @@ import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, D
                   </Col>
                   <Col md={3} sm={12}>
                       <Button>
-                          <Badge variant="light">9</Badge>
+                            <Badge variant="light">{item.comments.length}</Badge>
                       &#128172;
                   </Button>
                   </Col>
@@ -70,9 +77,15 @@ import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, D
                   </Col>
               </Row>
               {(props.currentPage === "postpage")&& <Row>
-                  comments
+                 {item.comments.length}
               </Row>}
           </Card>
      )
  }
- export default Post
+ 
+ const Post = connect(
+    null,
+    mapDispatchToProps
+)(ConennctedPost);
+
+export default Post;

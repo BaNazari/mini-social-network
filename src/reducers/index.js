@@ -4,8 +4,7 @@ import {SINGLE_POST_LOADED} from '../constants/constants';
 
 const initialState = {
     posts: [],
-    singlePost: []
-    
+    singlePost: [],
 };
 
 function rootReducer(state = initialState, action) {

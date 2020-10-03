@@ -9,6 +9,7 @@ import Post from './Post'
 const Timeline = function (props) {
 
     useEffect(() => { props.getData() }, [])
+    
     const currentPage= "homepage"
 
     return (

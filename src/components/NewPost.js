@@ -78,7 +78,8 @@ const ConnectedNewPost = function (props) {
                 reaction: [0,0,0]
                 ,
                 like: 0,
-                tags: tags
+                tags: tags,
+                comments : []
             });
 
             setContent(" ");
