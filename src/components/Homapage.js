@@ -22,7 +22,7 @@ const Homepage = function () {
                     <Col>
                         {loggendIn && <div className="avatar-holder">
                             <div className="avatar-name">
-                                <p >صورت خندان</p>
+                                <p >صورت زخمی</p>
                             </div>
                             <img className="avatar-image" src={avaImg}></img>
                         </div>}
