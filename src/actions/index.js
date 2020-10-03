@@ -19,10 +19,10 @@ export function addPost(payLoad) {
   }
 }
 
-export function modifyPost(payLoad) {
+export function modifyPost([payLoad,id]) {
   return function (dispatch, payload) {
-    return fetch("http://localhost:3000/posts", {
-      method: "POST",
+    return fetch(`http://localhost:3000/posts/${id}`, {
+      method: "PUT",
       headers: {
         'Content-Type': 'application/json',
       },
