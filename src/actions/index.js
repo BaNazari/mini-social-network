@@ -18,6 +18,7 @@ export function addPost(payLoad) {
   }
 }
 
+
 export function getData() {
   return function (dispatch) {
     return fetch("http://localhost:3000/posts", { method: "GET" })
