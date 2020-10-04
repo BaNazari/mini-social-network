@@ -112,29 +112,101 @@ body {
 }
 
 .entire-timeline-holder-row {
-    text-align      : right;
-}
-
-.entire-timeline-holder-col {
-    margin          : auto;
-    width: 100%;
     
 }
 
+.entire-timeline-holder-col {
+    margin: auto;
+    width : 100%;
+
+}
+
 .post-card-timeline {
-    width         : 100%;
-    display       : flex;
-    flex-direction: column;
-    margin        : 2% auto;
-    padding: 4%;
+    width           : 100%;
+    display         : flex;
+    flex-direction  : column;
+    margin          : 2% auto;
+    padding         : 4%;
+    background-color: whitesmoke;
+    text-align: right;
 }
 
-.card-text{
+.card-text {
     text-decoration: none;
-    color: black;
+    color          : black;
 }
 
-.card-text:hover{
+.card-text:hover {
     text-decoration: none !important;
-    color: black;
+    color          : black;
+}
+
+.post-date {
+    color    : rgb(139, 139, 139);
+    font-size: small;
+    padding  : 2%;
+    margin   : 0 2%
+}
+
+.who-wrote-txt {
+    font-size  : 15px;
+    font-weight: bolder;
+    padding    : 2% 5%;
+}
+
+.post-content-area {
+    background-color: white;
+    border-radius   : 5px;
+}
+
+.post-content-text {
+    font-size: 18px;
+    word-wrap: break-word;
+    padding  : 0 2%;
+}
+
+.post-content-img {
+    width  : 85%;
+    height : auto;
+    margin : auto;
+    padding: 2%;
+}
+
+.post-tag-holder {
+    display       : flex;
+    padding       : 1% 4%;
+    flex-direction: column;
+    margin        : 0 2%;
+}
+
+.post-tag {
+    margin   : 0.25em;
+    font-size: 14px;
+    padding  : 1%;
+}
+
+.post-tag-area-title {
+    position   : relative;
+    font-size  : 10px;
+    font-weight: bold;
+    color      : rgb(139, 139, 139);
+    font-style : italic;
+}
+
+.reaction-button {
+    background-color: rgba(0, 0, 0, 0.1);
+    border          : none;
+    padding         : 2px;
+    margin          : 0.5em;
+    border-radius   : 4px;
+}
+
+@media only screen and (max-width: 768px) {
+    .drop-down-button {
+        margin: auto;
+    }    
+}
+
+.dropdown-toggle {
+    border: none;
 }

@@ -86,58 +86,65 @@ const ConennctedPost = function (props) {
 
     return (
         <Card className="post-card-timeline">
-            <Row>
+            <Row className="post-date">
                 {item.date}
             </Row>
-            <Row>
+            <Row className="devider"></Row>
+            <Row className="who-wrote-txt">
                 {item.author} نوشت:
               </Row>
-            <Link to={`/posts/${item.id}`} key={item.id}>
+            <Link className="post-content-area" to={`/posts/${item.id}`} key={item.id}>
                 <Card.Body>
-                    <Card.Text>
+                    <Card.Text className="post-content-text">
                         {item.content}
                     </Card.Text>
-                    <Card.Img variant="top" src={item.file} />
+                    <Card.Img className="post-content-img" variant="top" src={item.file} />
                 </Card.Body>
             </Link>
-            <Row style={{ display: 'flex' }}>
-                {item.tags.map((tag) => (<Badge variant="secondary">{tag}</Badge>))}
+            <Row className="post-tag-holder">
+                <Row className="post-tag-area-title">
+                    <p>تگ‌ها:</p>
+                </Row>
+                <Row>
+                {item.tags.map((tag) => (<Badge className="post-tag" variant="secondary">{tag}</Badge>))}
+                </Row>
+                
             </Row>
             <Row>
                 <Col md={4} sm={12}>
                     <Row>
                         <Col>
-                            <Button onClick={() => setReaction0(reaction0 + 1)}>
+                            <Button className="reaction-button" onClick={() => setReaction0(reaction0 + 1)}>
                                 <Badge variant="light">{reaction0}</Badge>
                               &#129321;
                           </Button>
-                            <Button onClick={() => setReaction1(reaction1 + 1)}>
+                            <Button className="reaction-button" onClick={() => setReaction1(reaction1 + 1)}>
                                 <Badge variant="light">{reaction1}</Badge>
                               &#129314;
                           </Button>
-                            <Button onClick={() => setReaction2(reaction2 + 1)}>
+                            <Button className="reaction-button" onClick={() => setReaction2(reaction2 + 1)}>
                                 <Badge variant="light">{reaction2}</Badge>
                               &#129299;
                           </Button>
                         </Col>
                     </Row>
                 </Col>
-                <Col md={2} sm={12}>
-                    <Button>
+                <Col md={2} sm={2}>
+                    <Button className="reaction-button">
                         <Badge variant="light">{item.comments.length}</Badge>
                       &#128172;
                   </Button>
                 </Col>
-                <Col md={2} sm={12}>
-                    <Button onClick={() => setLike(likes + 1)}>
+                <Col md={2} sm={2}>
+                    <Button  className="reaction-button" onClick={() => setLike(likes + 1)}>
                         <Badge variant="light">{likes}</Badge>
                         &#128077;
                   </Button>
                 </Col>
 
                 <Col md={3} sm={12}>
-                    <InputGroup className="mb-3">
-                        <DropdownButton
+                    <InputGroup className="mb-3 sharing-button">
+                        <DropdownButton className="drop-down-button"
                             as={InputGroup.Prepend}
                             variant="outline-secondary"
                             title="اشتراک‌گذاری"
