@@ -9,7 +9,7 @@ function App() {
   return (
     <main className="main-container">
       <Switch>
-        <Route path="/" component={Homapage} exact></Route>
+        <Route path="/" component={ () => (<Homapage/>)} exact></Route>
         <Route path="/posts/:postId" component={PostPage} exact></Route>
         {/* <Route path="/posts" component={PostPage} exact></Route> */}
         <Route component={Error}></Route>

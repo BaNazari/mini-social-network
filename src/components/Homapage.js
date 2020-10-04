@@ -7,13 +7,14 @@ import avaImg from '../assets/avatar.jpeg';
 
 const Homepage = function () {
 
-
     const [loggendIn, setLogin] = useState(true)
+    
 
+    const newKey = new Date().valueOf().toString()
 
     return (
 
-        <Container  className="homepage-container">
+        <Container className="homepage-container">
             <Row >
                 <h3 className="headline"> مینی فیس‌بوک</h3>
             </Row>
@@ -34,7 +35,7 @@ const Homepage = function () {
                 </Col>
                 <Col md={7} sm={12} className="post-area">
                     {loggendIn && <NewPost ></NewPost>}
-                    <Timeline ></Timeline>
+                    <Timeline></Timeline>
                 </Col>
             </Row>
         </Container>
