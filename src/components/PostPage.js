@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { Container, Media, Col, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getSinglePost } from '../actions/index';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
 import Post from './Post'
 
 const PostPage = function (props) {

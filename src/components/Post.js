@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { getData } from "../actions/index";
 import { Link } from 'react-router-dom';
 import { Row, Card, Container, Col, Badge, Button, InputGroup, DropdownButton, Dropdown, Form } from 'react-bootstrap';
 

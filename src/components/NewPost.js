@@ -1,19 +1,14 @@
 
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Media, Button } from 'react-bootstrap';
-//import { Formik } from 'formik';
+import { Container, Row, Col, Form,  Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { addPost } from '../actions/index';
-//import * as yup from 'yup';
 
 function mapDispatchToProps(dispatch) {
     return {
         addPost: post => dispatch(addPost(post))
     }
 }
-
-//show text and pic
-
 
 const ConnectedNewPost = function (props) {
 
