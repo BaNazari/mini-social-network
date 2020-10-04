@@ -157,11 +157,12 @@ const ConennctedPost = function (props) {
                     </InputGroup>
                 </Col>
             </Row>
+            <Row className="devider"></Row>
             {(props.currentPage === "postpage") &&
-                <Container>
-                    <Row>
+                <Container className="comment-area">
+                    
                         <Form noValidate validated={validated} onSubmit={handleSubmit} className="input-form-holder">
-                            <Form.Row>
+                            <Form.Row className="comment-author-name-input">
                                 <Form.Group as={Col} md="12" controlId="CAuthInputForm">
                                     <Form.Label>اسمت رو ثبت کن</Form.Label>
                                     <Form.Control
@@ -178,7 +179,7 @@ const ConennctedPost = function (props) {
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Row>
+                            <Form.Row className="comment-text-input">
                                 <Form.Group as={Col} md="12" controlId="CTextInputForm">
                                     <Form.Label>نظرت چیه؟</Form.Label>
                                     <Form.Control
@@ -193,15 +194,15 @@ const ConennctedPost = function (props) {
                                     />
                                 </Form.Group>
                             </Form.Row>
-                            <Button className="submit-button" type="submit">بفرست</Button>
+                            <Button className="comment-form-submit-button" type="submit">بفرست</Button>
                         </Form>
-                    </Row>
+                    
                     {item.comments.map((comment) => (
-                        <Row style={{ display: 'flex' }}>
-                            <Row>
-                                {comment.commentAuthor}
+                        <Row  className="user-comment-box">
+                            <Row className="user-comment-name">
+                                {comment.commentAuthor}:
                             </Row>
-                            <Row>
+                            <Row className="user-comment-text">
                                 {comment.commentContent}
                             </Row>
                         </Row>

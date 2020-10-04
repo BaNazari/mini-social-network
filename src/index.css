@@ -97,6 +97,30 @@ body {
     width     : 100%;
     padding   : 1% 4%;
     text-align: right;
+    position  : relative;
+    height    : 200px;
+}
+
+.comment-author-name-input {
+    width    : 50%;
+    font-size: 14px;
+}
+
+.comment-text-input {
+    font-size: 14px;
+    width    : 85%;
+}
+
+.comment-form-submit-button {
+    position        : absolute;
+    left            : 0;
+    bottom          : 20%;
+    background-color: rgba(0, 0, 0, 0);
+    border          : none;
+    font-size       : 12px;
+    font-weight     : bold;
+    color           : rgb(139, 139, 139);
+    ;
 }
 
 .text-input-holder {
@@ -111,15 +135,14 @@ body {
     font-weight: bold;
 }
 
-.entire-timeline-holder-row {
-    
-}
+.entire-timeline-holder-row {}
 
 .entire-timeline-holder-col {
     margin: auto;
     width : 100%;
 
 }
+
 
 .post-card-timeline {
     width           : 100%;
@@ -128,7 +151,7 @@ body {
     margin          : 2% auto;
     padding         : 4%;
     background-color: whitesmoke;
-    text-align: right;
+    text-align      : right;
 }
 
 .card-text {
@@ -204,9 +227,43 @@ body {
 @media only screen and (max-width: 768px) {
     .drop-down-button {
         margin: auto;
-    }    
+    }
+
+    .comment-form-submit-button {
+        bottom: 0%;
+    }
 }
 
 .dropdown-toggle {
     border: none;
+}
+
+.comment-area {
+    padding: 0 5%;
+}
+
+.user-comment-box {
+    background-color: rgb(0, 0, 0, 0.03);
+    border-radius   : 5px;
+    position        : relative;
+    margin          : 2px;
+    word-wrap: break-word;
+}
+
+.user-comment-name {
+    margin     : 2%;
+    top        : 0;
+    right      : 5%;
+    color      : rgb(38, 104, 148);
+    font-size  : 14px;
+    font-weight: bold;
+    position   : absolute;
+
+}
+
+.user-comment-text {
+    position: relative;
+    top     : 0%;
+    padding : 1%;
+    margin  : 5%
 }
