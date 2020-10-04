@@ -15,7 +15,7 @@ const Homepage = function () {
 
         <Container  className="homepage-container">
             <Row >
-                <h3 className="headline">به مینی فیس‌بوک خوش آمدید.</h3>
+                <h3 className="headline"> مینی فیس‌بوک</h3>
             </Row>
 
             <Row>

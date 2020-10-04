@@ -98,7 +98,10 @@ const ConennctedPost = function (props) {
                     <Card.Text className="post-content-text">
                         {item.content}
                     </Card.Text>
+                    <Row  style={{textAlign:'center'}}>
                     <Card.Img className="post-content-img" variant="top" src={item.file} />
+                    </Row>
+                    
                 </Card.Body>
             </Link>
             <Row className="post-tag-holder">
